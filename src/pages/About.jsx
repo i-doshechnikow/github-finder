@@ -1,6 +1,8 @@
 function About() {
     return (
-        <div>About</div>
+        <div>
+            <h1 className="text-6xl mb-4">GitHub Finder</h1>
+        </div>
     )
 }
 

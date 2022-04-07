@@ -1,6 +1,8 @@
 function NotFound() {
     return (
-        <div>NotFound</div>
+        <div>
+            <h1 className="text-6xl mb-4">Oops, page not found</h1>
+        </div>
     )
 }
 
