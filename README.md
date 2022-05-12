@@ -1,3 +1,3 @@
 Project for searching and viewing repositories on the github platform
 
-<img align="" alt="GIF" src="" width="415" height="470" />
+<img align="" alt="PNG" src="https://github.com/i-doshechnikow/github-finder/blob/master/demonstration/finder.png"  />
