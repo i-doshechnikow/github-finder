@@ -1,16 +1,20 @@
 import { useState, useContext, useEffect } from "react";
+import AlertContext from "../context/alert/AlertContext";
 import GithubContext from "../context/github/GithubContext";
 
 export default (props) => {
   const [inputText, setInputText] = useState("");
 
   const { users, searchUser, clearSearchList } = useContext(GithubContext);
+  const { isAlert, setAlert } = useContext(AlertContext);
 
   const handleSearch = (event) => {
     event.preventDefault();
 
     if (inputText) {
       searchUser(inputText);
+    } else {
+      setAlert();
     }
     setInputText("");
   };

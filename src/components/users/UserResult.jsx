@@ -5,11 +5,6 @@ import UserItem from "./UserItem";
 
 function UserResult() {
   const { users, loading } = useContext(GithubContext);
-  // const { users, loading, fetchUsers } = useContext(GithubContext);
-
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, []);
 
   if (loading) return <Spinner />;
 
