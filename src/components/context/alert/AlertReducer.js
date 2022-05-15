@@ -4,11 +4,15 @@ const alertReducer = (state, action) => {
       return {
         ...state,
         isAlert: true,
+        message: action.message,
+        type: action.alertType,
       };
     case "REMOVE_ALERT":
       return {
         ...state,
         isAlert: false,
+        message: "",
+        type: "",
       };
     default:
       return state;

@@ -6,7 +6,7 @@ export default (props) => {
   const [inputText, setInputText] = useState("");
 
   const { users, searchUser, clearSearchList } = useContext(GithubContext);
-  const { isAlert, setAlert } = useContext(AlertContext);
+  const { isAlert, message, type, setAlert } = useContext(AlertContext);
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -14,7 +14,7 @@ export default (props) => {
     if (inputText) {
       searchUser(inputText);
     } else {
-      setAlert();
+      setAlert("Input is empty, enter something", "Error");
     }
     setInputText("");
   };
@@ -22,6 +22,16 @@ export default (props) => {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 mb-8 gap-8">
       <div>
+        {isAlert && (
+          <div className="mb-1">
+            <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+              {type}
+            </div>
+            <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+              <p>{message}</p>
+            </div>
+          </div>
+        )}
         <form onSubmit={handleSearch}>
           <div className="form-control">
             <div className="relative">

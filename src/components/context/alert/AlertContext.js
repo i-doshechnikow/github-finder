@@ -6,6 +6,8 @@ const AlertContext = createContext();
 export const AlertProvider = ({ children }) => {
   const initialState = {
     isAlert: false,
+    message: "",
+    type: "",
   };
 
   const [state, dispatch] = useReducer(alertReducer, initialState);
@@ -28,6 +30,8 @@ export const AlertProvider = ({ children }) => {
     <AlertContext.Provider
       value={{
         isAlert: state.isAlert,
+        message: state.message,
+        type: state.type,
         setAlert,
       }}
     >
