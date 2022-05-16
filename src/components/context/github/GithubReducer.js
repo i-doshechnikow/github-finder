@@ -2,11 +2,13 @@ const githubReducer = (state, action) => {
   switch (action.type) {
     case "SET_USERS":
       return {
+        ...state,
         loading: false,
         users: action.payload,
       };
     case "SET_USER":
       return {
+        ...state,
         loading: false,
         user: action.payload,
       };

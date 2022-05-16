@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import AlertContext from "../context/alert/AlertContext";
 import GithubContext from "../context/github/GithubContext";
 
-export default (props) => {
+export default () => {
   const [inputText, setInputText] = useState("");
 
   const { users, searchUser, clearSearchList } = useContext(GithubContext);

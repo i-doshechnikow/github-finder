@@ -82,27 +82,27 @@ export const GithubProvider = ({ children }) => {
   };
 
   const getSingleUserRepo = async (name) => {
-    // dispatch({
-    //   type: "SET_LOADING_TRUE",
-    // });
+    dispatch({
+      type: "SET_LOADING_TRUE",
+    });
 
-    // const res = await fetch(`${GITHUB_URL}/users/${name}`, {
-    //   headers: {
-    //     Authorization: `token ${GITHUB_TOKEN}`,
-    //   },
-    // });
+    const res = await fetch(`${GITHUB_URL}/users/${name}`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    });
 
-    // if (res.status === 404) {
-    //   window.location = "/notfound";
-    //   return;
-    // }
+    if (res.status === 404) {
+      window.location = "/notfound";
+      return;
+    }
 
-    // const info = await res.json();
+    const info = await res.json();
 
-    // dispatch({
-    //   type: "SET_USER",
-    //   payload: info,
-    // });
+    dispatch({
+      type: "SET_USER",
+      payload: info,
+    });
   };
 
   const clearSearchList = () => {
