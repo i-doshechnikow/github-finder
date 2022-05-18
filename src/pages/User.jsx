@@ -4,15 +4,18 @@ import { Link } from 'react-router-dom'
 import { useParams } from "react-router-dom";
 import GithubContext from "../components/context/github/GithubContext";
 import Spinner from "../components/layout/Spinner";
+import ReposList from "../components/repos/ReposList";
 
 export default () => {
   const { userId } = useParams();
-  const { getSingleUserInfo, getSingleUserRepo, clearSearchList, user, loading } =
+  const { getSingleUserInfo, getSingleUserRepo, clearSearchList, user, loading, repos, fetchRepos } =
     useContext(GithubContext);
 
   useEffect(() => {
     getSingleUserInfo(userId);
     // getSingleUserRepo(userId);
+
+    fetchRepos(login)
 
     clearSearchList()
   }, []);
@@ -155,5 +158,7 @@ export default () => {
         </div>
       </div>
     </div>
+
+    <ReposList repos={repos} />
   </div>;
 };

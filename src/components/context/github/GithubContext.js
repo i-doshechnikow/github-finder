@@ -10,17 +10,18 @@ export const GithubProvider = ({ children }) => {
   const initialState = {
     users: [],
     user: {},
+    repos: [],
     loading: false,
   };
 
   const [state, dispatch] = useReducer(githubReducer, initialState);
 
-  const fetchUsers = async () => {
+  const fetchRepos = async (login) => {
     dispatch({
       type: "SET_LOADING_TRUE",
     });
 
-    const res = await fetch(`${GITHUB_URL}/users`, {
+    const res = await fetch(`${GITHUB_URL}/users/${login}/repos`, {
       headers: {
         Authorization: `token ${GITHUB_TOKEN}`,
       },
@@ -29,7 +30,7 @@ export const GithubProvider = ({ children }) => {
     const answer = await res.json();
 
     dispatch({
-      type: "SET_USERS",
+      type: "SET_REPOS",
       payload: answer,
     });
   };
@@ -117,10 +118,12 @@ export const GithubProvider = ({ children }) => {
         users: state.users,
         loading: state.loading,
         user: state.user,
+        repos: state.repos,
         searchUser,
         clearSearchList,
         getSingleUserInfo,
         getSingleUserRepo,
+        fetchRepos
       }}
     >
       {children}
