@@ -11,15 +11,6 @@ export default () => {
   const { getSingleUserInfo, getSingleUserRepo, clearSearchList, user, loading, repos, fetchRepos } =
     useContext(GithubContext);
 
-  useEffect(() => {
-    getSingleUserInfo(userId);
-    // getSingleUserRepo(userId);
-
-    fetchRepos(login)
-
-    clearSearchList()
-  }, []);
-
   const {
     login,
     id,
@@ -54,6 +45,16 @@ export default () => {
     created_at,
     updated_at,
   } = user
+
+
+  useEffect(() => {
+    getSingleUserInfo(userId);
+    // getSingleUserRepo(userId);
+
+    fetchRepos(userId)
+
+    clearSearchList()
+  }, []);
 
   if (loading) return <Spinner />;
 
