@@ -22,9 +22,9 @@ export const GithubProvider = ({ children }) => {
     });
 
     const params = new URLSearchParams({
-      sort: 'created',
-      per_page: 10
-    })
+      sort: "created",
+      per_page: 10,
+    });
 
     const res = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
       headers: {
@@ -37,29 +37,6 @@ export const GithubProvider = ({ children }) => {
     dispatch({
       type: "SET_REPOS",
       payload: answer,
-    });
-  };
-
-  const searchUser = async (name) => {
-    dispatch({
-      type: "SET_LOADING_TRUE",
-    });
-
-    const URL_PARAMS = new URLSearchParams({
-      q: name,
-    });
-
-    const res = await fetch(`${GITHUB_URL}/search/users?${URL_PARAMS}`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
-
-    const { items } = await res.json();
-
-    dispatch({
-      type: "SET_USERS",
-      payload: items,
     });
   };
 
@@ -120,15 +97,12 @@ export const GithubProvider = ({ children }) => {
   return (
     <GithubContext.Provider
       value={{
-        users: state.users,
-        loading: state.loading,
-        user: state.user,
-        repos: state.repos,
-        searchUser,
+        ...state,
+        dispatch,
         clearSearchList,
         getSingleUserInfo,
         getSingleUserRepo,
-        fetchRepos
+        fetchRepos,
       }}
     >
       {children}

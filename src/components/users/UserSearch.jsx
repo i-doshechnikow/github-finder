@@ -1,18 +1,28 @@
 import { useState, useContext, useEffect } from "react";
 import AlertContext from "../context/alert/AlertContext";
+import { searchUser } from "../context/github/GitHubActions";
 import GithubContext from "../context/github/GithubContext";
 
 export default () => {
   const [inputText, setInputText] = useState("");
 
-  const { users, searchUser, clearSearchList } = useContext(GithubContext);
+  const { users, clearSearchList, dispatch } = useContext(GithubContext);
   const { isAlert, message, type, setAlert } = useContext(AlertContext);
 
-  const handleSearch = (event) => {
+  const handleSearch = async (event) => {
     event.preventDefault();
 
     if (inputText) {
-      searchUser(inputText);
+      dispatch({
+        type: "SET_LOADING_TRUE",
+      });
+
+      const usersData = await searchUser(inputText);
+
+      dispatch({
+        type: "SET_USERS",
+        payload: usersData,
+      });
     } else {
       setAlert("Input is empty, enter something", "Error");
     }

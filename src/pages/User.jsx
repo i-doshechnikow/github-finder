@@ -55,7 +55,6 @@ export default () => {
 
   useEffect(() => {
     getSingleUserInfo(userId);
-    // getSingleUserRepo(userId);
 
     fetchRepos(userId);
 
