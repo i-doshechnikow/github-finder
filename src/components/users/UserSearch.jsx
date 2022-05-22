@@ -1,6 +1,10 @@
 import { useState, useContext, useEffect } from "react";
 import AlertContext from "../context/alert/AlertContext";
-import { searchUser } from "../context/github/GitHubActions";
+import {
+  searchUser,
+  SET_LOADING,
+  SET_USERS,
+} from "../context/github/GitHubActions";
 import GithubContext from "../context/github/GithubContext";
 
 export default () => {
@@ -13,16 +17,11 @@ export default () => {
     event.preventDefault();
 
     if (inputText) {
-      dispatch({
-        type: "SET_LOADING_TRUE",
-      });
+      dispatch(SET_LOADING);
 
       const usersData = await searchUser(inputText);
 
-      dispatch({
-        type: "SET_USERS",
-        payload: usersData,
-      });
+      dispatch(SET_USERS(usersData));
     } else {
       setAlert("Input is empty, enter something", "Error");
     }
