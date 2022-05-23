@@ -14,6 +14,10 @@ export const SET_USERS = (users) => {
   };
 };
 
+export const CLEAR_USER_LIST = {
+  type: "CLEAR_USER_LIST",
+};
+
 export const searchUser = async (name) => {
   const URL_PARAMS = new URLSearchParams({
     q: name,

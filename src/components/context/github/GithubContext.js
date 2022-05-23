@@ -88,18 +88,11 @@ export const GithubProvider = ({ children }) => {
     });
   };
 
-  const clearSearchList = () => {
-    dispatch({
-      type: "CLEAR_USER_LIST",
-    });
-  };
-
   return (
     <GithubContext.Provider
       value={{
         ...state,
         dispatch,
-        clearSearchList,
         getSingleUserInfo,
         getSingleUserRepo,
         fetchRepos,

@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import AlertContext from "../context/alert/AlertContext";
 import {
+  CLEAR_USER_LIST,
   searchUser,
   SET_LOADING,
   SET_USERS,
@@ -10,7 +11,7 @@ import GithubContext from "../context/github/GithubContext";
 export default () => {
   const [inputText, setInputText] = useState("");
 
-  const { users, clearSearchList, dispatch } = useContext(GithubContext);
+  const { users, dispatch } = useContext(GithubContext);
   const { isAlert, message, type, setAlert } = useContext(AlertContext);
 
   const handleSearch = async (event) => {
@@ -62,7 +63,10 @@ export default () => {
         </form>
       </div>
       {users.length > 0 && (
-        <button className="btn btn-ghost btn-lg" onClick={clearSearchList}>
+        <button className="btn btn-ghost btn-lg" onClick={() => {
+          dispatch(CLEAR_USER_LIST)
+        }
+        }>
           Clear
         </button>
       )}

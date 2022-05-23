@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { FaCode, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { CLEAR_USER_LIST } from "../components/context/github/GitHubActions";
 import GithubContext from "../components/context/github/GithubContext";
 import Spinner from "../components/layout/Spinner";
 import ReposList from "../components/repos/ReposList";
@@ -11,11 +12,11 @@ export default () => {
   const {
     getSingleUserInfo,
     getSingleUserRepo,
-    clearSearchList,
     user,
     loading,
     repos,
     fetchRepos,
+    dispatch,
   } = useContext(GithubContext);
 
   const {
@@ -58,7 +59,7 @@ export default () => {
 
     fetchRepos(userId);
 
-    clearSearchList();
+    dispatch(CLEAR_USER_LIST)
   }, []);
 
   if (loading) return <Spinner />;
