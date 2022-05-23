@@ -18,6 +18,28 @@ export const CLEAR_USER_LIST = {
   type: "CLEAR_USER_LIST",
 };
 
+export const SET_USER = (info) => {
+  return {
+    type: "SET_USER",
+    payload: info,
+  }
+}
+
+export const getSingleUserInfo = async (name) => {
+  const res = await fetch(`${GITHUB_URL}/users/${name}`, {
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`,
+    },
+  });
+
+  if (res.status === 404) {
+    window.location = "/notfound";
+    return;
+  }
+
+  return await res.json();
+};
+
 export const searchUser = async (name) => {
   const URL_PARAMS = new URLSearchParams({
     q: name,

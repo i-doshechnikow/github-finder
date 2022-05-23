@@ -40,29 +40,7 @@ export const GithubProvider = ({ children }) => {
     });
   };
 
-  const getSingleUserInfo = async (name) => {
-    dispatch({
-      type: "SET_LOADING_TRUE",
-    });
 
-    const res = await fetch(`${GITHUB_URL}/users/${name}`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
-
-    if (res.status === 404) {
-      window.location = "/notfound";
-      return;
-    }
-
-    const info = await res.json();
-
-    dispatch({
-      type: "SET_USER",
-      payload: info,
-    });
-  };
 
   const getSingleUserRepo = async (name) => {
     dispatch({
@@ -93,7 +71,6 @@ export const GithubProvider = ({ children }) => {
       value={{
         ...state,
         dispatch,
-        getSingleUserInfo,
         getSingleUserRepo,
         fetchRepos,
       }}
