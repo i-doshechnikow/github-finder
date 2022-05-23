@@ -1,5 +1,14 @@
+import axios from "axios";
+
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
 const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+
+const instance = axios.create({
+  baseURL: GITHUB_URL,
+  headers: {
+    Authorization: `token ${GITHUB_TOKEN}`,
+  },
+});
 
 export const SET_LOADING = () => {
   return {
@@ -26,18 +35,14 @@ export const SET_USER = (info) => {
 }
 
 export const getSingleUserInfo = async (name) => {
-  const res = await fetch(`${GITHUB_URL}/users/${name}`, {
-    headers: {
-      Authorization: `token ${GITHUB_TOKEN}`,
-    },
-  });
+  const { status, data } = await instance(`/users/${name}`,);
 
-  if (res.status === 404) {
+  if (status === 404) {
     window.location = "/notfound";
     return;
   }
 
-  return await res.json();
+  return data;
 };
 
 export const SET_REPOS = (answer) => {
@@ -53,13 +58,9 @@ export const fetchRepos = async (login) => {
     per_page: 10,
   });
 
-  const res = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
-    headers: {
-      Authorization: `token ${GITHUB_TOKEN}`,
-    },
-  });
+  const { data } = await instance(`/users/${login}/repos?${params}`);
 
-  return await res.json();
+  return data;
 };
 
 export const searchUser = async (name) => {
@@ -67,13 +68,9 @@ export const searchUser = async (name) => {
     q: name,
   });
 
-  const res = await fetch(`${GITHUB_URL}/search/users?${URL_PARAMS}`, {
-    headers: {
-      Authorization: `token ${GITHUB_TOKEN}`,
-    },
-  });
+  const result = await instance(`/search/users?${URL_PARAMS}`)
 
-  const { items } = await res.json();
+  const { data: { items } } = result;
 
   return items;
 };
