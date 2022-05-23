@@ -26,10 +26,9 @@ export const CLEAR_USER_LIST = {
   type: "CLEAR_USER_LIST",
 };
 
-export const SET_USER = (info) => {
+export const SET_ALL_USER_INFO = (user, repos) => {
   return {
-    type: "SET_USER",
-    payload: info,
+    type: 'SET_ALL_USER_INFO', user: user, repos: repos,
   }
 }
 
@@ -45,13 +44,6 @@ export const getAllUserInfo = async (login) => {
   ]);
 
   return info;
-}
-
-export const SET_REPOS = (answer) => {
-  return {
-    type: "SET_REPOS",
-    payload: answer,
-  }
 }
 
 export const searchUser = async (name) => {
