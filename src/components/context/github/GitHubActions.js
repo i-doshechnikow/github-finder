@@ -40,6 +40,28 @@ export const getSingleUserInfo = async (name) => {
   return await res.json();
 };
 
+export const SET_REPOS = (answer) => {
+  return {
+    type: "SET_REPOS",
+    payload: answer,
+  }
+}
+
+export const fetchRepos = async (login) => {
+  const params = new URLSearchParams({
+    sort: "created",
+    per_page: 10,
+  });
+
+  const res = await fetch(`${GITHUB_URL}/users/${login}/repos?${params}`, {
+    headers: {
+      Authorization: `token ${GITHUB_TOKEN}`,
+    },
+  });
+
+  return await res.json();
+};
+
 export const searchUser = async (name) => {
   const URL_PARAMS = new URLSearchParams({
     q: name,
