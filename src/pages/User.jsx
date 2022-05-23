@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { FaCode, FaStore, FaUserFriends, FaUsers } from "react-icons/fa";
+import { FaCode, FaUserFriends, FaUsers } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { CLEAR_USER_LIST, fetchRepos, getSingleUserInfo, SET_LOADING, SET_REPOS, SET_USER } from "../components/context/github/GitHubActions";
@@ -18,37 +18,17 @@ export default () => {
 
   const {
     login,
-    id,
-    node_id,
     avatar_url,
-    gravatar_id,
-    url,
     html_url,
-    followers_url,
-    following_url,
-    gists_url,
-    starred_url,
-    subscriptions_url,
-    organizations_url,
-    repos_url,
-    events_url,
-    received_events_url,
     type,
-    site_admin,
     name,
-    company,
     blog,
     location,
-    email,
     hireable,
     bio,
-    twitter_username,
     public_repos,
-    public_gists,
     followers,
     following,
-    created_at,
-    updated_at,
   } = user;
 
   useEffect(() => {
