@@ -41,7 +41,7 @@ export default () => {
     })
 
     dispatch(CLEAR_USER_LIST)
-  }, []);
+  }, [userId, dispatch]);
 
   if (loading) return <Spinner />;
 
@@ -57,7 +57,7 @@ export default () => {
         <div className="custom-card-image mb-6 md:mb-0">
           <div className="rounded-lg shadow-xl card image-full">
             <figure>
-              <img src={avatar_url} alt="profile photo" />
+              <img src={avatar_url} alt="profile" />
             </figure>
             <div className="card-body justify-end">
               <h2 className="card-title mb-0">{name}</h2>

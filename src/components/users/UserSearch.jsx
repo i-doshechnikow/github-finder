@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import AlertContext from "../context/alert/AlertContext";
 import {
   CLEAR_USER_LIST,
